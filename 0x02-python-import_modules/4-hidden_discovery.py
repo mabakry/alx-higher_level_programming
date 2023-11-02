@@ -1,6 +1,6 @@
 #!/usr/bin/ptyhon3
 if __name__ == "__main__":
     import  hidden_4
-    for i in dir(hidden_4):
-        if i[:2] != "__":
-            print(i)
+    for x in sorted(dir(hidden_4)):
+        if x[:2] != "__":
+            print(x)
