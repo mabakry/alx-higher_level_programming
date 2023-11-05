@@ -1,21 +1,23 @@
 #include "lists.h"
 
 /**
- * list_len - calculate list length.
+ * add_node - add node at beginning of a list.
  * @head: list
- * Return: list length
+ * @n: node to be added.
+ * Return: address of the new node
  */
 
-int list_len(listint_t **head)
+listint_t *add_node(listint_t **head, int n)
 {
-	int n = 0;
+	listint_t *new;
 
-	while (head && *head)
-	{
-		n++;
-		*head = (*head)->next;
-	}
-	return (n);
+	new = malloc(sizeof(listint_t));
+	if (new == NULL)
+		return (NULL);
+	new->n = n;
+	new->next = *head;
+	*head = new;
+	return (new);
 }
 
 
@@ -26,26 +28,28 @@ int list_len(listint_t **head)
  */
 int is_palindrome(listint_t **head)
 {
-	int new[list_len(head)], i = 0;
-	listint_t *temp = *head, *cmp = *head;
+	listint_t *temp = *head, *cmp = NULL, *cmp_tmp = NULL;
 
-	if (*head == NULL || head == NULL)
+	if (*head == NULL || temp->next == NULL)
 		return (1);
 
 	while (temp)
 	{
-		new[i] = temp->n;
+		add_node(&cmp, temp->n);
 		temp = temp->next;
-		i++;
 	}
-	i--;
 
-	while (cmp)
+	cmp_tmp = cmp;
+	while (*head)
 	{
-		if (cmp->n != new[i])
+		if ((*head)->n != cmp_tmp->n)
+		{
+			free_listint(cmp);
 			return (0);
-		cmp = cmp->next;
-		i--;
+		}
+		*head = (*head)->next;
+		cmp_tmp = cmp_tmp->next;
 	}
+	free_listint(cmp);
 	return (1);
 }
