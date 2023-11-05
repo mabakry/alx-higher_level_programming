@@ -11,7 +11,10 @@ listint_t *reverse_listint(listint_t **head)
 {
         listint_t *prev = NULL, *next = NULL;
 
-        while (*head)
+        if (*head == NULL || (*head)->next == NULL)
+		 return (NULL);
+
+	while (*head)
         {
                 next = (*head)->next;
                 (*head)->next = prev;
@@ -31,7 +34,7 @@ int is_palindrome(listint_t **head)
 {
 	listint_t *temp = *head, *cmp = NULL;
 
-	if (*head == NULL || temp->next == NULL)
+	if (*head == NULL || (*head)->next == NULL)
 		return (1);
 
 	cmp = reverse_listint(head);
