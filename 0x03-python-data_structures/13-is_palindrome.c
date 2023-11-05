@@ -2,25 +2,25 @@
 #include <stdlib.h>
 
 /**
- * add_node - add node at beginning of a list.
+ * reverse_listint - reverse a list
  * @head: list
- * @n: node to be added.
- * Return: address of the new node
+ * Return: address of the reversed list
  */
 
-listint_t *add_node(listint_t **head, const int n)
+listint_t *reverse_listint(listint_t **head)
 {
-	listint_t *new;
+        listint_t *prev = NULL, *next = NULL, *current = *head;
 
-	new = malloc(sizeof(listint_t));
-	if (new == NULL)
-		return (NULL);
-	new->n = n;
-	new->next = *head;
-	*head = new;
-	return (new);
+        while (current)
+        {
+                next = current->next;
+                current->next = prev;
+                prev = current;
+                current = next;
+        }
+        current = prev;
+        return (current);
 }
-
 
 /**
  * is_palindrome -  checks if a singly linked list is a palindrome.
@@ -29,28 +29,19 @@ listint_t *add_node(listint_t **head, const int n)
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *temp = *head, *cmp = NULL, *cmp_tmp = NULL;
+	listint_t *temp = *head, *cmp = NULL;
 
 	if (*head == NULL || temp->next == NULL)
 		return (1);
 
-	while (temp != NULL)
+	cmp = reverse_listint(head);
+	while (temp && cmp && temp->next && cmp->next)
 	{
-		add_node(&cmp, temp->n);
-		temp = temp->next;
-	}
-
-	cmp_tmp = cmp;
-	while (*head != NULL)
-	{
-		if ((*head)->n != cmp_tmp->n)
-		{
-			free_listint(cmp);
+		if (temp->n != cmp->n)
 			return (0);
-		}
-		*head = (*head)->next;
-		cmp_tmp = cmp_tmp->next;
+		
+		temp = temp->next;
+		cmp = cmp->next;
 	}
-	free_listint(cmp);
 	return (1);
 }
