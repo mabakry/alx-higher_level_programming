@@ -33,14 +33,14 @@ int is_palindrome(listint_t **head)
 	if (*head == NULL || temp->next == NULL)
 		return (1);
 
-	while (temp)
+	while (temp != NULL)
 	{
 		add_node(&cmp, temp->n);
 		temp = temp->next;
 	}
 
 	cmp_tmp = cmp;
-	while (*head)
+	while (*head != NULL)
 	{
 		if ((*head)->n != cmp_tmp->n)
 		{
