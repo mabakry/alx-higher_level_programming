@@ -1,14 +1,14 @@
 #include "lists.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
-*add_nodeint - adds a new node at the beginning of a listint_t list
-*@head: head of listint_t
-*@n: int to add in listint_t list
-*Return: address of the new element, or NULL if it failed
-*/
-listint_t *add_nodeint(listint_t **head, const int n)
+ * add_node - add node at beginning of a list.
+ * @head: list
+ * @n: node to be added.
+ * Return: address of the new node
+ */
+
+listint_t *add_node(listint_t **head, const int n)
 {
 	listint_t *new;
 
@@ -20,35 +20,37 @@ listint_t *add_nodeint(listint_t **head, const int n)
 	*head = new;
 	return (new);
 }
+
+
 /**
-*is_palindrome - identify if a syngle linked list is palindrome
-*@head: head of listint_t
-*Return: 1 if it is palindrome else 0
-*/
+ * is_palindrome -  checks if a singly linked list is a palindrome.
+ * @head: list to be checked.
+ * Return: 0 if not palindrome, 1 if palindrome.
+ */
 int is_palindrome(listint_t **head)
 {
-	listint_t *head2 = *head;
-	listint_t *aux = NULL, *aux2 = NULL;
+	listint_t *temp = *head, *cmp = NULL, *cmp_tmp = NULL;
 
-	if (*head == NULL || head2->next == NULL)
+	if (*head == NULL || temp->next == NULL)
 		return (1);
-	while (head2 != NULL)
+
+	while (temp != NULL)
 	{
-		add_nodeint(&aux, head2->n);
-		head2 = head2->next;
+		add_node(&cmp, temp->n);
+		temp = temp->next;
 	}
-	aux2 = aux;
+
+	cmp_tmp = cmp;
 	while (*head != NULL)
 	{
-		if ((*head)->n != aux2->n)
+		if ((*head)->n != cmp_tmp->n)
 		{
-			free_listint(aux);
+			free_listint(cmp);
 			return (0);
 		}
 		*head = (*head)->next;
-		aux2 = aux2->next;
+		cmp_tmp = cmp_tmp->next;
 	}
-	free_listint(aux);
+	free_listint(cmp);
 	return (1);
 }
-
