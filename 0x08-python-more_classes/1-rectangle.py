@@ -5,18 +5,19 @@
 class Rectangle:
     """ defines a Rectangle"""
     def __init__(self, width=0, height=0):
-        """ initiate witdh and height"""
+        """ initiate a new Rectangle"""
+
         self.height = height
         self.width = width
 
     @property
     def width(self):
-        """Private instance attribute: width"""
+        """Get Rectangle Width"""
         return self.__width
 
-    @property
+    @width.setter
     def width(self, value):
-        """ setter to width"""
+        """ Set Rectangle Width"""
         if type(value) is not int:
             raise TypeError("width must be an integer")
 
@@ -27,12 +28,12 @@ class Rectangle:
 
     @property
     def height(self):
-        """ Private instance attribute: height"""
+        """ Get Rectangle Height"""
         return self.__height
 
-    @property
+    @height.setter
     def height(self, value):
-        """ setter to height"""
+        """ Set Rectangle Height"""
         if type(value) is not int:
             raise TypeError("height must be an integer")
 
