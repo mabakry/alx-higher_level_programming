@@ -91,5 +91,5 @@ class Rectangle:
 
     @classmethod
     def square(cls, size=0):
-        """Returns an instance with equal sides of length `size`."""
+        """Returns a rectangle of width equal to height."""
         return cls(size, size)
