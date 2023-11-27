@@ -91,13 +91,5 @@ class Rectangle:
 
     @classmethod
     def square(cls, size=0):
-        """Returns an instance with equal sides of length `size`.
-
-        Args:
-            size (int): length of sides of square, defaults to 0.
-
-        Returns:
-            new instance of class with equal sides
-
-        """
+        """Returns an instance with equal sides of length `size`."""
         return cls(size, size)
