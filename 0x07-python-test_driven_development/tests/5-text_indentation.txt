@@ -32,6 +32,13 @@ test not str:
 	...
 	TypeError: text must be a string
 
+Test string with empty string:
+	>>> text_indentation("")
+	
+Test newline:
+	>>> text_indentation("\n")
+	<BLANKLINE>
+
 test empty arg:
 	>>> text_indentation()
 	Traceback (most recent call last):

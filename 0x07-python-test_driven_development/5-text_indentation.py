@@ -9,6 +9,9 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
+    if text == "":
+        return
+
     for i in range(0, len(text)):
         if text[i] in ('.', '?', ':'):
             print(text[i])
@@ -18,7 +21,8 @@ def text_indentation(text):
         else:
             if text[i - 1] not in ('.', '?', ':') or text[i] != " ":
                 print(text[i], end="")
-    print()
+    if text[i] != "\n":
+        print()
 
 
 if __name__ == "__main__":
