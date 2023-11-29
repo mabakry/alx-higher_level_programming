@@ -9,20 +9,11 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    if text == "":
-        return
+    for delim in ".?:":
+        text = (delim + "\n\n").join([
+            line.strip(" ") for line in text.split(delim)])
 
-    for i in range(0, len(text)):
-        if text[i] in ('.', '?', ':'):
-            print(text[i])
-            print()
-        elif text[i] == " " and text[i - 1] in ('.', '?', ':'):
-            pass
-        else:
-            if text[i - 1] not in ('.', '?', ':') or text[i] != " ":
-                print(text[i], end="")
-    if text[i] != "\n":
-        print()
+    print(text, end="")
 
 
 if __name__ == "__main__":
