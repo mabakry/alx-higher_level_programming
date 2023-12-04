@@ -1,5 +1,5 @@
 #!/usr/nib/python3
-""" returns the list of available attributes and methods of an object"""
+""" Lookup Module"""
 
 
 def lookup(obj):
