@@ -13,6 +13,7 @@ class Student:
 
     def to_json(self):
         """retrieves a dictionary"""
-        if (type(attrs) is list and all(type(ele) is str for ele in attrs)):
-            return {i: getattr(self, i) for i in attrs if hasattr(self, i)}
+        if (type(attrs) == list and
+                all(type(ele) == str for ele in attrs)):
+            return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
         return self.__dict__
